@@ -1,0 +1,10 @@
+*.csv
+*.pkl
+*.txt
+model/notebooks/catboost_info/.
+model/outputs/.
+simulation/outputs/.
+simulation/__pycache__/.
+simulation/logging_controls/__pycache__/.
+simulation/strategies/__pycache__/.
+
