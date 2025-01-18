@@ -21,7 +21,7 @@ class PersistentDownloader:
 
         url = f'https://api.sofascore.com/api/v1/event/{eventId}/statistics'
         savefilename = f'match_stat_{eventId}.json'
-        savepath = os.path.join('E:/', 'Data', 'tennis', 'sofascore', 'match-stats-itf', savefilename)
+        savepath = os.path.join('E:/', 'Data', 'tennis', 'sofascore', 'match-stats', savefilename)
 
         if os.path.exists(savepath):
             print(f"Skipped: {savefilename} (already exists)")
@@ -69,14 +69,14 @@ def get_existing_event_ids(folder_path):
 
 def main():
     # Define the output folder
-    output_folder = os.path.join('E:/', 'Data', 'tennis', 'sofascore', 'match-stats-itf')
+    output_folder = os.path.join('E:/', 'Data', 'tennis', 'sofascore', 'match-stats')
 
     # Ensure the directory exists
     os.makedirs(output_folder, exist_ok=True)
 
     con = duckdb.connect("E:/duckdb/tennis.duckdb", read_only=True)
 
-    ids_to_get = con.execute("SELECT DISTINCT id FROM sofascore_events WHERE tournament_category IN ('ITF Men', 'ITF Women')").df()
+    ids_to_get = con.execute("SELECT DISTINCT id FROM sofascore_events WHERE tournament_category IN ('WTA 125')").df()
 
     con.close()
 
